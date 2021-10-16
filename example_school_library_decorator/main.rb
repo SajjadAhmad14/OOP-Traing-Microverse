@@ -7,19 +7,7 @@ require_relative "./teacher.rb"
 
 class Bookstore
   def initialize
-    @books = []
     @rentals = []
-  end
-
-  def list_all_books
-    if @books.empty?
-      puts "No books found"
-      return
-    end
-
-    @books.each do |book|
-      puts "Title: #{book.title}, Author: #{book.author}"
-    end
   end
 
   def list_all_rentals
@@ -40,17 +28,6 @@ class Bookstore
     rentals.each do |rental|
       puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
     end
-  end
-
-  def create_book
-    print "Book title: "
-    title = gets.chomp
-
-    print "Book author: "
-    author = gets.chomp
-
-    @books << Book.new(title, author)
-    puts "Book created succesfully"
   end
 
   def create_rental
@@ -102,13 +79,19 @@ def main
 
     case response
     when "1"
-      bookstore.list_all_books()
+      Book.list_all_books()
     when "2"
       Person.list_all_people()
     when "3"
       Person.create_person()
     when "4"
-      bookstore.create_book()
+      print "Book title: "
+      title = gets.chomp
+      print "Book author: "
+      author = gets.chomp
+      book = Book.new(title, author)
+      Book.add_books(book)
+      puts "Book created succesfully"  
     when "5"
       bookstore.create_rental()
     when "6"

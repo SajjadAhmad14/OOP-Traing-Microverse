@@ -1,7 +1,23 @@
 class Book
+  @@books = []
   attr_accessor :title, :author, :rentals
+  
+  def self.add_books(book)
+    @@books << book
+  end
 
-  def initialize(title)
+  def self.list_all_books
+    if @@books.empty?
+      puts "No books found"
+      return
+    end
+
+    @@books.each do |book|
+      puts "Title: #{book.title}, Author: #{book.author}"
+    end
+  end
+
+  def initialize(title, author)
     @title = title
     @author = author
     @rentals = []
