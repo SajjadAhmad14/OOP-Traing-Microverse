@@ -1,14 +1,15 @@
+# rubocop:disable all
+
 class Book
   @@books = []
   attr_accessor :title, :author, :rentals
-  
   def self.add_books(book)
     @@books << book
   end
 
   def self.list_all_books
     if @@books.empty?
-      puts "No books found"
+      puts 'No books found'
       return
     end
 
